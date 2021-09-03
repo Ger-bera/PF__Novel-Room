@@ -1,5 +1,5 @@
 # 小説共同投稿サイト『Novel Room』
-![TOP](/app/aseets/images/pexels-wendy-van-zyl-1112048.jpg)
+![TOP](./app/assets/images/pexels-wendy-van-zyl-1112048.jpg)
 
 ## サイト概要
 　小説投稿サイトです。  
