@@ -25,7 +25,8 @@
 
 ## チャレンジ要素一覧
 　チャレンジ要素一覧は[こちら](https://docs.google.com/spreadsheets/d/1bjkFmKs7PgxBDCNGK9Vu5fqVChA2has2Qpqu7p2ZUKg/edit#gid=0)
-　
+ 
+　## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
