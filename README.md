@@ -22,7 +22,8 @@
 
 ## 設計書
 　ER図は[こちら](https://app.diagrams.net/#G1onjiP_9K_CpQIzYrwOivIXQqghv7AmSz)  
-　テーブル定義書は[こちら](https://docs.google.com/spreadsheets/d/1uFh1-e-0E36dC5llu4M22W3AlYF9Z1J8kNftTPrbrew/edit#gid=1373217982)
+　テーブル定義書は[こちら](https://docs.google.com/spreadsheets/d/1uFh1-e-0E36dC5llu4M22W3AlYF9Z1J8kNftTPrbrew/edit#gid=1373217982)  
+　アプリケーション詳細設計は[こちら](https://docs.google.com/spreadsheets/d/18MIantg9saQzKkhA6SE-63ugdMlDpSlid_IJ0BbxRJU/edit#gid=2133469642)
 
 ## チャレンジ要素一覧
 　チャレンジ要素一覧は[こちら](https://docs.google.com/spreadsheets/d/1bjkFmKs7PgxBDCNGK9Vu5fqVChA2has2Qpqu7p2ZUKg/edit#gid=0)
