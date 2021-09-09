@@ -21,7 +21,8 @@
 　「設定は浮かんでるけど小説として形にできない」や「小説は書きたいけど世界観を構築できない」というとき、前者であれば「Room」を作成して設定を書き、他のユーザーへ開放する。後者であれば他のユーザーが作った「Room」へ参加して設定に則って小説を書く。
 
 ## 設計書
-　ER図は[こちら](https://app.diagrams.net/#G1onjiP_9K_CpQIzYrwOivIXQqghv7AmSz)
+　ER図は[こちら](https://app.diagrams.net/#G1onjiP_9K_CpQIzYrwOivIXQqghv7AmSz)  
+　テーブル定義書は[こちら](https://docs.google.com/spreadsheets/d/1uFh1-e-0E36dC5llu4M22W3AlYF9Z1J8kNftTPrbrew/edit#gid=1373217982)
 
 ## チャレンジ要素一覧
 　チャレンジ要素一覧は[こちら](https://docs.google.com/spreadsheets/d/1bjkFmKs7PgxBDCNGK9Vu5fqVChA2has2Qpqu7p2ZUKg/edit#gid=0)
