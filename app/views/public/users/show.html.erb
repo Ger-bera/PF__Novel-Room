@@ -1,0 +1,9 @@
+<div>
+  <h2>プロフィール</h2>
+  ユーザー名<%= @user.name %>
+  
+</div>
+<% if user_signed_in? && @user.id == current_user.id %>
+  <%= link_to "編集", edit_user_path(current_user) %>
+  <%= link_to "退会ページ", unsubscribe_user_path(current_user) %>
+<% end %>

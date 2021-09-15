@@ -13,6 +13,20 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
+   before_action :reject_user, only: [:create]
+
+  protected
+
+  def reject_user
+    @user = User.find_by(email: params[:user][:email].downcase)
+    if @user
+      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
+        flash[:error] = "退会済みです。"
+        redirect_to new_user_session_path
+      end
+    end
+  end
+
   # POST /resource/sign_in
   # def create
   #   super

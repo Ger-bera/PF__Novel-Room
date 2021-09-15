@@ -1,0 +1,5 @@
+<div>
+  <% novel.tags.each do |tag| %>
+    <%= link_to "##{tag.tag_name}", novels_path(tag) %>
+  <% end %>
+</div>

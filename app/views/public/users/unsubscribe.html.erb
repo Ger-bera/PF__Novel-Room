@@ -1,1 +1,5 @@
 <h1>退会確認画面だよ！</h1>
+<% if user_signed_in? && @user.id == current_user.id %>
+  <%= link_to "退会しない", user_path(@user), class: "btn btn-primary" %>
+  <%= link_to "退会する", withdraw_user_path(@user), method: :patch, data: {confirm: "本当に退会しますか？"}, class: "btn btn-outline-danger" %>
+<% end %>
