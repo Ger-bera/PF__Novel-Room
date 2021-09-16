@@ -58,4 +58,12 @@ class Public::NovelsController < ApplicationController
     redirect_to room_novels_path
   end
 
+  private
+
+  def novel_params
+    params.require(:novel).permit(:title, :body, :image)
+  end
+
+
+
 end

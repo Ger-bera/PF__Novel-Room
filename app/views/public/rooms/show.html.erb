@@ -1,1 +1,20 @@
+<div>
+  <%= @room.room_name %>
+</div>
+<% if @room.room_tags.present? %>
+  <div>
+    <% @room.room_tags.each do |room_tag| %>
+      <!--room.rbで「through」を使ったことで記述可能に-->
+      <%= room_tag.tag_name %>
+    <% end %>
+  </div>
+<% else %>
+  <div>
+    タグはありません。
+  </div>
+<% end %>
 <%= markdown(@room.world_body).html_safe %>
+<% if @room.user == current_user %>
+  <%= link_to "編集する", edit_room_path(@room) %>
+  <%= link_to "削除する", room_path(@room), method: :delete, date: {confirm: "本当に削除しますか？"} %>
+<% end %>

@@ -1,1 +1,8 @@
 <h1>部屋の一覧ページだよ！</h1>
+<% @rooms.each do |room| %>
+  <div>
+    <%= link_to room.room_name, room_path(room.id) %>
+  </div>
+<% end %>
+
+<%= paginate @rooms %>

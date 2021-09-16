@@ -26,7 +26,7 @@ class Room < ApplicationRecord
    new_tags.each do |new_name|
      room_tag = RoomTag.find_by(tag_name: new_name)
      room_tag = RoomTag.create(tag_name: new_name, room_id: self.id) if room_tag.nil?
-     self.room_tags << room_tag
+     self.room_tags << room_tag #見えないけど中間テーブルを経由している
    end
   end
 end

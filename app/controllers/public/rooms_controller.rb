@@ -1,4 +1,5 @@
 class Public::RoomsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @room = Room.new
@@ -23,11 +24,11 @@ class Public::RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
-    tag_list = params[:room][:tag_name].split
+    tag_list = params[:room][:tag_name].split(/\s/)
     @room.user_id = current_user.id
     if @room.save
-       @room.save_rooms(tag_list)
-      redirect_to rooms_path
+      @room.save_rooms(tag_list)
+      redirect_to room_path(@room.id)
     else
       flash.now[:alert] = "作成に失敗しました"
       render "new"
@@ -45,17 +46,25 @@ class Public::RoomsController < ApplicationController
 
   def update
     @room = Room.find(params[:id])
-    if @room.update(room_params)
-      redirect_to room_path(@room.id)
+    if @room.user == current_user
+      if @room.update(room_params)
+        redirect_to room_path(@room.id)
+      else
+        render "edit"
+      end
     else
-      render "edit"
+      redirect_to root_path
     end
   end
 
   def destroy
     @room = Room.find(params[:id])
-    @room.destroy
-    redirect_to rooms_path
+    if @room.user == current_user
+      @room.destroy
+      redirect_to rooms_path
+    else
+      redirect_to root_path
+    end
   end
 
   private

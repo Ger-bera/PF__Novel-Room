@@ -1,0 +1,19 @@
+<h1>部屋の編集ページ</h1>
+<div>
+  <%= form_with model: [@room_tag,@room],local:true do |f| %>
+    <div>
+      <%= f.label :room_name, "部屋の名前" %>
+      <%= f.text_field :room_name %>
+    </div>
+    <div>
+      <%= f.label :world_body, "部屋の設定" %>
+      <%= f.text_area :world_body %>
+    </div>
+    <div>
+      <%= f.label :tag_name, "タグの設定"%>
+      <%= f.text_field :tag_name %>
+    </div>
+
+    <%= f.submit "更新" %>
+  <% end %>
+</div>
