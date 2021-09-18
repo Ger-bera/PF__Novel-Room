@@ -8,6 +8,10 @@ class Room < ApplicationRecord
 
   belongs_to :user
 
+   def favorited_by?(user)
+    room_favorites.where(user_id: user.id).exists?
+   end
+
   def self.rooms_serach(search)
    Room.where(['title LIKE ? OR content LIKE ?', "%#{search}%", "%#{search}%"])
   end

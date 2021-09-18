@@ -18,3 +18,39 @@
   <%= link_to "編集する", edit_room_path(@room) %>
   <%= link_to "削除する", room_path(@room), method: :delete, date: {confirm: "本当に削除しますか？"} %>
 <% end %>
+
+<% if @room.favorited_by?(current_user) %>
+  <p>
+    <%= link_to room_room_favorite_path(@room), method: :delete, remote: true do %>
+      ♥<%= @room.room_favorites.count %>
+    <% end %>
+  </p>
+<% else %>
+    <p>
+      <%= link_to room_room_favorites_path(@room), method: :post, remote: true do %>
+        ♡<%= @room.room_favorites.count %>
+      <% end %>
+    </p>
+  <% end %>
+
+  <table class="table">
+    <tbody>
+     <% @room.room_comments.each do |rcomment| %>
+        <tr>
+          <td>
+            <%= link_to rcomment.user.name,user_path(rcomment.user.id) %>
+            <%= rcomment.comment %>
+            <% if rcomment.user == current_user %>
+              <%= link_to "削除", room_room_comment_path(rcomment.room, rcomment), method: :delete, remote:true %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+  <%= form_with model:[@room, @room_comment],method: :post, local:true do |f| %>
+    <%= f.text_area :comment,placeholder: "コメントはここに",size: "30x5" %>
+    <%= f.submit "送信する" %>
+  <% end %>

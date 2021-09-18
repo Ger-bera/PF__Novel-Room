@@ -1,11 +1,13 @@
 class Public::NovelsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
+    @novel = Novel.new
   end
 
   def index
     if params[:search].present? #検索欄にワードが存在するか？
-      novels = Novel.novelss_serach(params[:search])
+      novels = Novel.novels_search(params[:search])
     elsif params[:tag_id].present?
       @tag = NovelTag.find(params[:tag_id])
       novels = @tag.novels.order(created_at: :desc)

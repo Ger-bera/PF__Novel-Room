@@ -10,8 +10,8 @@
       <%= f.text_area :world_body %>
     </div>
     <div>
-      <%= f.label :tag_name, "タグの設定"%>
-      <%= f.text_field :tag_name %>
+      <%= f.label :tag_name, "タグの設定(半角スペースで区切ってください)"%>
+      <%= f.text_field :tag_name, value: @room.room_tags.map {|tag| tag.tag_name}.join(" ") %>
     </div>
 
     <%= f.submit "更新" %>

@@ -1,7 +1,18 @@
 <div>
-  <%= form_with(model: [@tag,@novel], local: true) do |f| %>
-    <%= f.text_field :title, placeholder: "タイトルを入力" %>
-    <%= f.text_field :tag_name, placeholder: "タグをスペース区切りで入力" %>
+  <%= form_with(model: [@novel_tag,@novel], local: true) do |f| %>
+    <div>
+      <%= f.label :title, "小説のタイトル" %>
+      <%= f.text_field :title, placeholder: "タイトルを入力" %>
+    </div>
+    <div>
+      <%= f.label :body, "小説の内容" %>
+      <%= f.text_area :body, placeholder: "小説の内容はこちら"%>
+    </div>
+    <div>
+      <%= f.label :tag_name, "タグの設定"%>
+      <%= f.text_field :tag_name, placeholder: "タグをスペース区切りで入力" %>
+    </div>
+    
   <% end %>
 </div>
 
