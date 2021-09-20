@@ -1,9 +1,25 @@
 class Public::NovelCommentsController < ApplicationController
 
   def create
+    @comment = current_user.novel_comments.new(comment_params)
+    @comment.novel_id = params['novel_id']
+    if @comment.save
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def destroy
+    @comment = NovelComment.find(params[:id])
+    @comment.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
+  private
+
+  def comment_params
+    params.require(:novel_comment).permit(:comment)
   end
 
 end

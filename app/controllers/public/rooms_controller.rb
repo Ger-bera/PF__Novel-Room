@@ -1,5 +1,5 @@
 class Public::RoomsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :index]
 
   def new
     @room = Room.new
@@ -10,7 +10,7 @@ class Public::RoomsController < ApplicationController
       rooms = Room.rooms_search(params[:search])
     elsif params[:tag_id].present?
       @tag = RoomTag.find(params[:tag_id])
-      rooms = @tag.rooms.order(created_at: :desc)
+      rooms = @tag.room.order(created_at: :desc)
     else
       rooms = Room.all.order(created_at: :desc)
     end

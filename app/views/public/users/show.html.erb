@@ -1,8 +1,40 @@
 <div>
   <h2>プロフィール</h2>
-  ユーザー名<%= @user.name %>
-  
+  <p>ユーザー名: <%= @user.name %></p>
 </div>
+
+<table>
+  <caption>ブックマーク一覧</caption>
+  <% if @user.bookmarks.present? %>
+    <thead>
+      <tr>
+        <th>投稿者名</th>
+        <th>タイトル</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.bookmarks.each do |bookmark| %>
+        <tr>
+          <td><%= bookmark.novel.user.name %></td>
+          <td>
+            <%= link_to room_novel_path(bookmark.novel) do %>
+              <%= bookmark.novel.title %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+   <tbody>
+     <tr>
+       <td>
+         まだブックマークはありません。
+       </td>
+     </tr>
+   </tbody>
+  <% end %>
+</table>
+
 <% if user_signed_in? && @user.id == current_user.id %>
   <%= link_to "編集", edit_user_path(current_user) %>
   <%= link_to "退会ページ", unsubscribe_user_path(current_user) %>

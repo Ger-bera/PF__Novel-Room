@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :room_comments    , only: [:create, :destroy]
     resources :room_favorites   , only: [:create, :destroy]
     resources :novels do
+      resource :bookmarks, only: [:create, :destroy]
       resources :novel_comments , only: [:create, :destroy]
       resources :novel_favorites, only: [:create, :destroy]
     end

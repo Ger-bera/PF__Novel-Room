@@ -1,0 +1,19 @@
+<h1>novelの編集ページ</h1>
+<div>
+  <%= form_with model: [@novel_tag,@novel],url: "/rooms/#{@room.id}/novels/#{@novel.id}", local: true do |f| %>
+    <div>
+      <%= f.label :title, "小説のタイトル" %>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :body, "小説の内容" %>
+      <%= f.text_area :body %>
+    </div>
+    <div>
+      <%= f.label :tag_name, "タグの編集(半角スペースで区切ってください)"%>
+      <%= f.text_field :tag_name, value: @novel.novel_tags.map {|tag| tag.tag_name}.join(" ") %>
+    </div>
+
+    <%= f.submit "更新" %>
+  <% end %>
+</div>

@@ -1,5 +1,8 @@
-<div>
-  <% novel.tags.each do |tag| %>
-    <%= link_to "##{tag.tag_name}", novels_path(tag) %>
-  <% end %>
-</div>
+<h1>小説の一覧</h1>
+<% @novels.each do |novel| %>
+  <div>
+    <%= link_to novel.title, room_novel_path(novel.room_id,novel.id) %>
+  </div>
+<% end %>
+
+<%= paginate @novels %>

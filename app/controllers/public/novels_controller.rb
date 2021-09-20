@@ -1,8 +1,9 @@
 class Public::NovelsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :index]
 
   def new
     @novel = Novel.new
+    @room = Room.find(params[:room_id])
   end
 
   def index
@@ -10,7 +11,7 @@ class Public::NovelsController < ApplicationController
       novels = Novel.novels_search(params[:search])
     elsif params[:tag_id].present?
       @tag = NovelTag.find(params[:tag_id])
-      novels = @tag.novels.order(created_at: :desc)
+      novels = @tag.novel.order(created_at: :desc)
     else
       novels = Novel.all.order(created_at: :desc)
     end
@@ -20,16 +21,19 @@ class Public::NovelsController < ApplicationController
 
   def show
     @novel = Novel.find(params[:id])
+    @novel_comment = NovelComment.new
   end
 
   def create
+    @room = Room.find(params[:room_id])
     @novel = Novel.new(novel_params)
-    tag_list = params[:novel][:tag_name].split
+    @novel.room_id = @room.id
+    tag_list = params[:novel][:tag_name].split(/\s/)
     @novel.image.attach(params[:novel][:image])
     @novel.user_id = current_user.id
     if @novel.save
-       @novel.save_novels(tag_list)
-      redirect_to room_novels_path
+      @novel.save_novels(tag_list)
+      redirect_to room_novel_path(@novel.room_id,@novel)
     else
       flash.now[:alert] = "投稿に失敗しました"
       render "new"
@@ -38,6 +42,7 @@ class Public::NovelsController < ApplicationController
 
   def edit
     @novel = Novel.find(params[:id])
+    @room = Room.find(params[:room_id])
     if @novel.user == current_user
       render "edit"
     else
@@ -47,17 +52,27 @@ class Public::NovelsController < ApplicationController
 
   def update
     @novel = Novel.find(params[:id])
-    if @novel.update(novel_params)
-      redirect_to room_novel_path(@novel.id)
+    tag_list = params[:novel][:tag_name].split(/\s/)
+    if  @novel.user == current_user
+      if @novel.update(novel_params)
+        @novel.save_novels(tag_list)
+        redirect_to room_novel_path(@novel.id)
+      else
+        render "edit"
+      end
     else
-      render "edit"
+      redirect_to root_path
     end
   end
 
   def destroy
     @novel = Novel.find(params[:id])
-    @novel.destroy
-    redirect_to room_novels_path
+    if @novel.user == current_user
+      @novel.destroy
+      redirect_to room_novels_path
+    else
+      redirect_to root_path
+    end
   end
 
   private
