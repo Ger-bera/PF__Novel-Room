@@ -1,4 +1,4 @@
-# 小説共同投稿サイト『Novel Room』
+# 短編小説共同投稿サイト『Novel Room』
 ![TOP](./app/assets/images/pexels-wendy-van-zyl-1112048.jpg)
 
 ## サイト概要
