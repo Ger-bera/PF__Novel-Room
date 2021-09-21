@@ -3,7 +3,7 @@ class Room < ApplicationRecord
   has_many :novels        , dependent: :destroy
   has_many :room_comments , dependent: :destroy
   has_many :room_tagmaps  , dependent: :destroy
-  has_many :room_tags     , through: :room_tagmaps
+  has_many :room_tags     , dependent: :destroy, through: :room_tagmaps
   has_many :room_favorites, dependent: :destroy
 
   belongs_to :user
@@ -21,12 +21,10 @@ class Room < ApplicationRecord
    old_tags = current_tags - room_tags
    new_tags = room_tags - current_tags
 
-   # Destroy
    old_tags.each do |old_name|
      self.room_tags.delete RoomTag.find_by(tag_name: old_name)
    end
 
-   # Create
    new_tags.each do |new_name|
      room_tag = RoomTag.find_by(tag_name: new_name)
      room_tag = RoomTag.create(tag_name: new_name, room_id: self.id) if room_tag.nil?

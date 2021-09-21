@@ -1,0 +1,17 @@
+<% if @model == "room" %>
+  <h3>【『部屋』検索結果】検索ワード：<%= @content %></h3>
+
+<% elsif @model == "novel" %>
+  <h3>【『小説』検索結果】検索ワード：<%= @content %></h3>
+
+<% elsif @model == "room_tag" %>
+  <h3>【『部屋のタグ』検索結果】検索ワード：<%= @content %></h3>
+
+<% elsif @model == "novel_tag" %>
+  <h3>【『小説のタグ』検索結果】検索ワード：<%= @content %></h3>
+
+<% elsif @model == "user" %>
+  <h3>【『作者』検索結果】検索ワード：<%= @content %></h3>
+
+<% end %>
+<%= render 'searches/index', records: @records, model: @model %>

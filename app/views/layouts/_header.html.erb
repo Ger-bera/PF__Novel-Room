@@ -8,5 +8,12 @@
         <%= link_to "ログイン", new_user_session_path %>
       <% end %>
     </div>
+  <% if user_signed_in? %>
+    <%= form_with url: search_path, method: :get, local: true do %>
+      <%= text_field_tag 'content' %>
+      <%= select_tag 'model', options_for_select({ "作者" => "user", "部屋" => "room", "小説" => "novel", "部屋のタグ" => "room_tag", "小説のタグ" => "novel_tag" }) %>
+      <%= submit_tag '検索' %>
+    <% end %>
+  <% end %>
   </div>
 </nav>

@@ -1,0 +1,55 @@
+<% if model == 'room' %>
+  <% records.each do |room| %>
+    <table>
+      <tbody id="room">
+        <tr>
+          <td><%= link_to "#{room.user.name}", user_path(room.user.id) %></td>
+          <td><%= link_to "#{room.room_name}", room_path(room.id) %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% elsif model == 'novel' %>
+ <% records.each do |novel| %>
+    <table>
+      <tbody id="novel">
+        <tr>
+          <td><%= link_to "#{novel.user.name}", user_path(novel.user.id) %></td>
+          <td><%= link_to "#{novel.title}", room_novel_path(novel.room_id,novel.id) %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% elsif model == 'room_tag' %>
+ <% records.each do |rtag| %>
+    <table>
+      <tbody id="roomtag">
+        <tr>
+          <td><%= link_to "#{rtag.tag_name}", rooms_path(tag_id: rtag.id) %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% elsif model == 'novel_tag' %>
+  <% records.each do |ntag| %>
+    <table>
+      <tbody id="noveltag">
+        <tr>
+          <td><%= link_to ntag.tag_name, room_novels_path(tag_id: ntag.id) %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% elsif model == 'user' %>
+  <% records.each do |user| %>
+    <table>
+      <tbody id="user">
+        <tr>
+          <td><%= link_to "#{user.name}", user_path(user.id) %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
+
+

@@ -11,7 +11,7 @@ class Public::NovelsController < ApplicationController
       novels = Novel.novels_search(params[:search])
     elsif params[:tag_id].present?
       @tag = NovelTag.find(params[:tag_id])
-      novels = @tag.novel.order(created_at: :desc)
+      novels = @tag.novels.order(created_at: :desc)
     else
       novels = Novel.all.order(created_at: :desc)
     end
