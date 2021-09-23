@@ -1,8 +1,11 @@
 class Public::NovelFavoritesController < ApplicationController
 
   def create
+    @room = Room.find(params[:room_id])
     favorite = current_user.novel_favorites.new(novel_id: params[:novel_id])
     favorite.save
+    novel_favorite = NovelFavorite.find(params[:id])
+    novel_favorite.create_notification_novelfavorite(current_user)
     redirect_to room_novel_path(params[:room_id],params[:novel_id])
   end
 

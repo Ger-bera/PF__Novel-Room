@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+
+ body{
+  margin: 0;
+  background-color: rgba(242,242,242,1);
+  text-decoration: none;
+ }
+
+ body:hover{
+   text-decoration: none;
+ }
+
+ header{
+  background-color: rgba(33,37,41,0.9);
+  text-decoration: none;
+ }
+
+ .header-link{
+  color: white;
+ }
+
+.container{
+  background-color: white;
+}

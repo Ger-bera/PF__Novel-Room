@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   get "/about" => "public/homes#about"
   get "/search" => "searches#search"
 
+  resources :notifications, only: :index
+  get "/all_novels" => "public/novels#all_index"
+
   resources :rooms, module: "public" do
     resources :room_comments    , only: [:create, :destroy]
     resources :room_favorites   , only: [:create, :destroy]

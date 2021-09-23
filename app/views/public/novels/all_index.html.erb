@@ -1,0 +1,5 @@
+<div>
+  <% @novels.each do |novel| %>
+    <p><%= link_to novel.title, room_novel_path(novel.room.id, novel.id) %></p>
+  <% end %>
+</div>

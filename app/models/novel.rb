@@ -11,35 +11,19 @@ class Novel < ApplicationRecord
 
   has_one_attached :image
 
-  def create_notification_like(current_user)
-   # すでに「いいね」されているか検索(連打での嫌がらせ防止)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
-    # いいねされていない場合のみ、通知レコードを作成
-    if temp.blank?
-      notification = current_user.active_notifications.new(
-      novel_id: id,
-      visited_id: user_id,
-      action: 'favorite'
-      )
-      # 自分の投稿に対するいいねの場合は、通知済みとする
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
-      notification.save if notification.valid?
-    end
-  end
-  
-  def create_notification_comment(current_user, novel_comment_id)
+
+
+  def create_notification_novelcomment(current_user, novel_comment_id)
     save_notification_comment(current_user, novel_comment_id, user_id)
   end
 
-  def save_notification_comment(current_user, comment_id, visited_id)
+  def save_notification_novelcomment(current_user, comment_id, visited_id)
     # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
     notification = current_user.active_notifications.new(
-      post_id: id,
-      comment_id: comment_id,
+      novel_id: id,
+      novel_comment_id: novel_comment_id,
       visited_id: visited_id,
-      action: 'comment'
+      action: 'novelcomment'
     )
     # 自分の投稿に対するコメントの場合は、通知済みとする
     if notification.visitor_id == notification.visited_id
@@ -47,8 +31,8 @@ class Novel < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-  
-  def create_notification_follow(current_user)
+
+  def create_notification_bookmark(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'bookmark'])
     if temp.blank?
       notification = current_user.active_notifications.new(
@@ -58,10 +42,10 @@ class Novel < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-  
-  
-  
-  
+
+
+
+
   def bookmarked_by?(user)
    bookmarks.where(user_id: user).exists?
   end

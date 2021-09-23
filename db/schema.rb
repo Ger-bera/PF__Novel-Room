@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2021_09_21_123302) do
     t.integer "bookmark_id"
     t.string "action", null: false
     t.boolean "checked", default: false, null: false
+    t.integer "novel_favorites_id"
+    t.integer "room_favorites_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

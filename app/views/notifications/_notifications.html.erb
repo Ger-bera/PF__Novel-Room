@@ -1,0 +1,41 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+
+<div class = "col-md-6 mx-auto">
+  <div class = "form-inline">
+    <span>
+      <%= link_to user_path(visitor) do %>
+        <strong>
+          <%= visitor.name %>
+        </strong>
+      <% end %>
+      <%= "さんが"%>
+      <% case notification.action %>
+      <% when 'bookmark' then %>
+        <%= "あなたの作品をブックマークしました"%>
+      <% when 'favorite' then %>
+        <%= link_to "あなたの作品", notification.novel, style: "font-weight: bold;" %>
+        <%= "にいいねしました" %>
+      <% when 'novelcomment' then %>
+        <% if notification.novel.user_id == visited.id %>
+          <%= link_to "あなたの投稿", notification.novel, style: "font-weight: bold;" %>
+        <% else %>
+          <span>
+            <%= link_to room_novel_path(notification.novel) do %>
+            <strong>
+              <%= notification.novel.user.name + 'さんの投稿' %>
+            </strong>
+          </span>
+        <% end %>
+        <%= "にコメントしました"%>
+        <p class = "text-muted mb-0">
+          <%= NovelComment.find_by(id: notification.novel_comment_id)&.novelcomment %>
+        </p>
+      <% end %>
+    </span>
+  </div>
+</div>
+
+<div class = "small text-muted text-right">
+  <%= time_ago_in_words(notification.created_at).upcase %>
+</div>

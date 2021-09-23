@@ -49,7 +49,6 @@
     </tbody>
   </table>
 
-
   <%= form_with model:[@room, @room_comment],method: :post, local:true do |f| %>
     <%= f.text_area :comment,placeholder: "コメントはここに",size: "30x5" %>
     <%= f.submit "送信する" %>

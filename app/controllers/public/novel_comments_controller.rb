@@ -3,7 +3,9 @@ class Public::NovelCommentsController < ApplicationController
   def create
     @comment = current_user.novel_comments.new(comment_params)
     @comment.novel_id = params['novel_id']
+    @novel = @comment.novel
     if @comment.save
+      @novel.create_notification_novelcomment(current_user, @comment.id)
       redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)

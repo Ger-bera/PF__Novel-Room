@@ -13,11 +13,16 @@ class Public::NovelsController < ApplicationController
       @tag = NovelTag.find(params[:tag_id])
       novels = @tag.novels.order(created_at: :desc)
     else
-      novels = Novel.all.order(created_at: :desc)
+      novels = Novel.all.where(room_id: params[:room_id]).order(created_at: :desc)
     end
     @tag_lists = NovelTag.all
     @novels = Kaminari.paginate_array(novels).page(params[:page]).per(10)
   end
+
+  def all_index
+    @novels = Novel.all
+  end
+
 
   def show
     @novel = Novel.find(params[:id])
