@@ -10,8 +10,8 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
       t.integer :bookmark_id
       t.string :action, null: false
       t.boolean :checked, null: false, default: false
-      t.integer :novel_favorites_id
-      t.integer :room_favorites_id
+      t.integer :novel_favorite_id
+      t.integer :room_favorite_id
       t.timestamps
     end
   end

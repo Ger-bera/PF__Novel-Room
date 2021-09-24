@@ -4,8 +4,9 @@ class Public::NovelCommentsController < ApplicationController
     @comment = current_user.novel_comments.new(comment_params)
     @comment.novel_id = params['novel_id']
     @novel = @comment.novel
+    visited_id = @comment.user_id
     if @comment.save
-      @novel.create_notification_novelcomment(current_user, @comment.id)
+      @novel.save_notification_novelcomment(current_user,@comment.id,visited_id )
       redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)

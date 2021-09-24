@@ -1,6 +1,10 @@
 <div>
   <%= form_with model: [@novel_tag,@novel],url: "/rooms/#{@room.id}/novels", local: true do |f| %>
     <div>
+      <%= f.label :画像 %><br />
+      <%= f.file_field :image %>
+    </div>
+    <div>
       <%= f.label :title, "小説のタイトル" %>
       <%= f.text_field :title, placeholder: "タイトルを入力" %>
     </div>

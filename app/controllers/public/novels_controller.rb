@@ -21,6 +21,7 @@ class Public::NovelsController < ApplicationController
 
   def all_index
     @novels = Novel.all
+    @novels = Kaminari.paginate_array(@novels).page(params[:page]).per(10)
   end
 
 

@@ -5,7 +5,7 @@ class Public::BookmarksController < ApplicationController
     @novel = Novel.find(params[:novel_id])
     bookmark = @novel.bookmarks.new(user_id: current_user.id)
     if bookmark.save
-      @bookmark.create_notification_bookmark(current_user)
+      bookmark.create_notification_bookmark(current_user)
       redirect_to request.referer
     else
       redirect_to request.referer

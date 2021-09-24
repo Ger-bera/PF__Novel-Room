@@ -11,17 +11,11 @@ class Novel < ApplicationRecord
 
   has_one_attached :image
 
-
-
-  def create_notification_novelcomment(current_user, novel_comment_id)
-    save_notification_comment(current_user, novel_comment_id, user_id)
-  end
-
   def save_notification_novelcomment(current_user, comment_id, visited_id)
     # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
     notification = current_user.active_notifications.new(
       novel_id: id,
-      novel_comment_id: novel_comment_id,
+      novel_comment_id: comment_id,
       visited_id: visited_id,
       action: 'novelcomment'
     )
@@ -31,19 +25,6 @@ class Novel < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-
-  def create_notification_bookmark(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'bookmark'])
-    if temp.blank?
-      notification = current_user.active_notifications.new(
-        visited_id: id,
-        action: 'bookmark'
-      )
-      notification.save if notification.valid?
-    end
-  end
-
-
 
 
   def bookmarked_by?(user)

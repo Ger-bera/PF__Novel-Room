@@ -5,14 +5,14 @@ class NovelFavorite < ApplicationRecord
   validates_uniqueness_of :novel_id, scope: :user_id
 
 
-  
+
    def create_notification_novelfavorite(current_user)
    # すでに「いいね」されているか検索(連打での嫌がらせ防止)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and novel_favorite_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
     # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?
-      notification = current_user.active_novelnotifications.new(
-      novel_favorites_id: id,
+      notification = current_user.active_notifications.new(
+      novel_favorite_id: id,
       visited_id: user_id,
       action: 'favorite'
       )

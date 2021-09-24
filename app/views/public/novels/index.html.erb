@@ -1,8 +1,20 @@
-<h1>小説の一覧</h1>
-<% @novels.each do |novel| %>
-  <div>
-    <%= link_to novel.title, room_novel_path(novel.room_id,novel.id) %>
+<div class="container">
+  <h1>小説の一覧</h1>
+  <div class="row g-3">
+    <% @novels.each do |novel| %>
+    <div class="col m-2">
+      <div class="card" style="width: 18rem;">
+        <% if novel.image.attached?%>
+            <%= image_tag novel.image %>
+          <% else %>
+            <%= image_tag "pexels-wendy-van-zyl-1112048.jpg"%>
+          <% end %>
+        <div class="card-body">
+          <p class="card-text"><%= link_to novel.title, room_novel_path(novel.room_id,novel.id) %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
+</div>
 <%= paginate @novels %>

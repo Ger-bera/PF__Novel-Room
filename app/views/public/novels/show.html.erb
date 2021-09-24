@@ -31,6 +31,7 @@
     </p>
   <% else %>
     <p>
+      いいね: 
       <%= link_to room_novel_novel_favorites_path(@novel.room_id,@novel), method: :post, remote: true do %>
         ♡<%= @novel.novel_favorites.count %>
       <% end %>

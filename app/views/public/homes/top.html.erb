@@ -1,1 +1,27 @@
-<%= flash[:notice] %>
+<div id="top-image">
+  <%= flash[:notice] %>
+  <div　class="container shadow">
+    <div class = "col-12" style = "position: relative;" >
+        <%= image_tag "pexels-janko-ferlic-590493.jpg" , class:"d-block mx-auto",size: "660x440", :style=>" opacity: 1; padding: 30px 0;" %>
+        <p style = "position: absolute; top: 50%;left: 50%; font-size:2em; -ms-transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); font-family: 'Lato', sans-serif; margin:0; padding:0; color: rgba(255,255,255,0.7);">
+          ようこそ、Novel Roomへ
+        </p>
+      </div>
+      <div class="container container-top shadow my-30">
+        <h5>小説ランキング</h5>
+        <% @all_novelranks.each.with_index(1) do |n, i| %>
+        <div class="col-4 m-2">
+          <%= i %>位: <%= link_to n.title, room_novel_path(n.room_id,n.id) %>
+          <!--%= いいね: n.novel_favorites.count %>-->
+        </div>
+        <% end %>
+      </div>
+      <div class="container container-top shadow my-30">
+        <h5>部屋ランキング</h5>
+        <% @all_roomranks.each.with_index(1) do |r, i| %>
+          <%= i %>位: <%= link_to r.room_name, room_path(r.id) %>
+          <!--%= いいね: n.novel_favorites.count %>-->
+        <% end %>
+      </div>
+  </div>
+</div>
