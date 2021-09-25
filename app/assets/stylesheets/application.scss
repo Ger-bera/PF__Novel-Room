@@ -14,7 +14,16 @@
  *= require_self
  */
  @import "bootstrap";
- @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+
+body,
+html,
+main
+{
+  height: 100%;
+  margin: auto 0;
+  font-family: 'Raleway','Microsoft JhengHei';
+}
 
  body{
   margin: 0;

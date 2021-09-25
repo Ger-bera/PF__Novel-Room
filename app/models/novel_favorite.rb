@@ -13,7 +13,7 @@ class NovelFavorite < ApplicationRecord
     if temp.blank?
       notification = current_user.active_notifications.new(
       novel_favorite_id: id,
-      visited_id: user_id,
+      visited_id: novel.user_id,
       action: 'favorite'
       )
       # 自分の投稿に対するいいねの場合は、通知済みとする

@@ -11,11 +11,11 @@ class Novel < ApplicationRecord
 
   has_one_attached :image
 
-  def save_notification_novelcomment(current_user, comment_id, visited_id)
+  def save_notification_novelcomment(current_user, novel_comment_id, visited_id)
     # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
     notification = current_user.active_notifications.new(
       novel_id: id,
-      novel_comment_id: comment_id,
+      novel_comment_id: novel_comment_id,
       visited_id: visited_id,
       action: 'novelcomment'
     )

@@ -8,10 +8,10 @@ class Bookmark < ApplicationRecord
 
 
   def create_notification_bookmark(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'bookmark'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, novel.user_id, 'bookmark'])
     if temp.blank?
       notification = current_user.active_notifications.new(
-        visited_id: id,
+        visited_id: novel.user_id,
         action: 'bookmark'
       )
       notification.save if notification.valid?
