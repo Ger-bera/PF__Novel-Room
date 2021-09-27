@@ -1,8 +1,8 @@
 <div class="container shadow-sm">
   <h1>小説の一覧</h1>
-  <div class="row">
+  <div class="all-row">
     <% @novels.each do |novel| %>
-      <div class="col-4 m-2 p-0 shadow">
+      <div class="m-2 p-0 shadow">
         <div class="card">
           <% if novel.image.attached?%>
             <%= image_tag novel.image %>

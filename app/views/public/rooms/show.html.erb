@@ -1,36 +1,48 @@
-<div>
-  <%= @room.room_name %>
-</div>
-<% if @room.room_tags.present? %>
+<div class="container shadow mx-auto">
   <div>
-    <% @room.room_tags.each do |room_tag| %>
-      <!--room.rbで「through」を使ったことで記述可能に-->
-      <%= link_to "##{room_tag.tag_name}", rooms_path(tag_id: room_tag) %>
-    <% end %>
+    Room Name : <%= @room.room_name %>
   </div>
-<% else %>
-  <div>
-    タグはありません。
-  </div>
-<% end %>
-<%= markdown(@room.world_body).html_safe %>
-<% if @room.user == current_user %>
-  <%= link_to "編集する", edit_room_path(@room) %>
-  <%= link_to "削除する", room_path(@room), method: :delete, date: {confirm: "本当に削除しますか？"} %>
-<% end %>
-
-<% if @room.favorited_by?(current_user) %>
-  <p>
-    <%= link_to room_room_favorite_path(@room), method: :delete, remote: true do %>
-      ♥<%= @room.room_favorites.count %>
-    <% end %>
-  </p>
-<% else %>
-    <p>
-      <%= link_to room_room_favorites_path(@room), method: :post, remote: true do %>
-        ♡<%= @room.room_favorites.count %>
+  <% if @room.room_tags.present? %>
+    <div>
+      <% @room.room_tags.each do |room_tag| %>
+        <!--room.rbで「through」を使ったことで記述可能に-->
+        Tag Name : <%= link_to "##{room_tag.tag_name}", rooms_path(tag_id: room_tag) %>
       <% end %>
+    </div>
+  <% else %>
+    <div>
+      タグはありません。
+    </div>
+  <% end %>
+  <div class="m-2">
+    <%= markdown(@room.world_body).html_safe %>
+  </div>
+
+  <% if user_signed_in? %>
+    <% if @room.favorited_by?(current_user) %>
+      <p class="m-2">
+        <%= link_to room_room_favorite_path(@room), method: :delete, remote: true do %>
+        いいね : ♥<%= @room.room_favorites.count %>
+        <% end %>
+      </p>
+    <% else %>
+      <p class="m-2">
+        <%= link_to room_room_favorites_path(@room), method: :post, remote: true do %>
+        いいね : ♡<%= @room.room_favorites.count %>
+        <% end %>
+      </p>
+    <% end %>
+  <% else %>
+    <p class="m-2">
+      いいね : ♡<%= @room.room_favorites.count %>
     </p>
+  <% end %>
+
+  <% if @room.user == current_user %>
+    <div>
+      <%= link_to "編集する", edit_room_path(@room) ,class: "btn btn-outline-dark btn-sm m-1"%>
+      <%= link_to "削除する", room_path(@room), method: :delete, date: {confirm: "本当に削除しますか？"},class: "btn btn-outline-dark btn-sm m-1" %>
+    </div>
   <% end %>
 
   <table class="table">
@@ -51,5 +63,10 @@
 
   <%= form_with model:[@room, @room_comment],method: :post, local:true do |f| %>
     <%= f.text_area :comment,placeholder: "コメントはここに",size: "30x5" %>
-    <%= f.submit "送信する" %>
+    <%= f.submit "送信する",class: "btn btn-outline-dark btn-sm m-1" %>
   <% end %>
+
+  <% if user_signed_in?%>
+    <%= link_to "Novelを投稿する",  new_room_novel_path(@room.id), class: "btn btn-outline-dark btn-sm m-1" %>
+  <% end %>
+</div>

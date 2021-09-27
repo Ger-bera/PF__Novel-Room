@@ -15,7 +15,7 @@ class Public::RoomsController < ApplicationController
       rooms = Room.all.order(created_at: :desc)
     end
     @tag_lists = RoomTag.all
-    @rooms = Kaminari.paginate_array(rooms).page(params[:page]).per(10)
+    @rooms = Kaminari.paginate_array(rooms).page(params[:page]).per(9)
   end
 
   def show

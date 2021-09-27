@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   resources :notifications, only: :index
   get "/all_novels" => "public/novels#all_index"
+  get "/search_novels/:tag_id" => "public/novels#search_tag", as: "search_tag"
 
   resources :rooms, module: "public" do
     resources :room_comments    , only: [:create, :destroy]

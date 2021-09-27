@@ -32,6 +32,7 @@ class Public::UsersController < ApplicationController
     @user.update(is_deleted: true)
     reset_session
     flash[:notice] = "ご利用いただきありがとうございました！"
+     redirect_to root_path
   end
 
   private

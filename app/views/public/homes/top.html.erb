@@ -7,20 +7,22 @@
           Novel Room
         </p>
       </div>
-      <div class="container container-top shadow my-30">
+      <div class="container container-top shadow my-30 mx-auto py-30">
         <h5>小説ランキング</h5>
         <% @all_novelranks.each.with_index(1) do |n, i| %>
-        <div class="col-4 m-2">
+        <div class="m-2">
           <%= i %>位: <%= link_to n.title, room_novel_path(n.room_id,n.id) %>
-          <!--%= いいね: n.novel_favorites.count %>-->
+          （いいね数: <%= n.novel_favorites.count %>）
         </div>
         <% end %>
       </div>
-      <div class="container container-top shadow my-30">
+      <div class="container container-top shadow my-30 mx-auto py-30">
         <h5>部屋ランキング</h5>
         <% @all_roomranks.each.with_index(1) do |r, i| %>
-          <%= i %>位: <%= link_to r.room_name, room_path(r.id) %>
-          <!--%= いいね: n.novel_favorites.count %>-->
+        <div class="m-2">
+            <%= i %>位: <%= link_to r.room_name, room_path(r.id) %>
+            (いいね数: <%= r.room_favorites.count %>)
+        </div>
         <% end %>
       </div>
   </div>

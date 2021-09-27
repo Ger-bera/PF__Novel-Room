@@ -1,5 +1,5 @@
 class Public::NovelsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index, :all_index, :search_tag]
 
   def new
     @novel = Novel.new
@@ -22,6 +22,13 @@ class Public::NovelsController < ApplicationController
   def all_index
     @novels = Novel.all
     @novels = Kaminari.paginate_array(@novels).page(params[:page]).per(10)
+  end
+
+  def search_tag
+    @tag_id = params[:tag_id]
+    @novels = Novel.where(id: NovelTagmap.where(novel_tag_id: @tag_id).pluck(:novel_id))
+    @novels = Kaminari.paginate_array(@novels).page(params[:page]).per(10)
+    render "index"
   end
 
 

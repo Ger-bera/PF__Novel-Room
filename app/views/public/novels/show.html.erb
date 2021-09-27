@@ -1,4 +1,4 @@
-<div class="container shadow text-center rounded">
+<div class="container shadow rounded mx-auto">
   筆者: <%= link_to @novel.user.name,user_path(@novel.user) %>
   タイトル: <%= @novel.title %>
   <% if @novel.novel_tags.present? %>
@@ -22,19 +22,25 @@
     <%= link_to "削除する", room_novel_path(@novel.id), method: :delete, date: {confirm: "本当に削除しますか？"} %>
   <% end %>
 
-  <% if @novel.favorited_by?(current_user) %>
-    <p>
-      いいね:
-      <%= link_to room_novel_novel_favorite_path(@novel.room_id,@novel), method: :delete, remote: true do %>
-        ♥<%= @novel.novel_favorites.count %>
-      <% end %>
-    </p>
+  <% if user_signed_in? %>
+    <% if @novel.favorited_by?(current_user) %>
+      <p>
+        いいね:
+        <%= link_to room_novel_novel_favorite_path(@novel.room_id,@novel), method: :delete, remote: true do %>
+          ♥<%= @novel.novel_favorites.count %>
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        いいね:
+        <%= link_to room_novel_novel_favorites_path(@novel.room_id,@novel), method: :post, remote: true do %>
+          ♡<%= @novel.novel_favorites.count %>
+        <% end %>
+      </p>
+    <% end %>
   <% else %>
-    <p>
-      いいね: 
-      <%= link_to room_novel_novel_favorites_path(@novel.room_id,@novel), method: :post, remote: true do %>
-        ♡<%= @novel.novel_favorites.count %>
-      <% end %>
+    <p class="m-2">
+      いいね : ♡<%= @novel.novel_favorites.count %>
     </p>
   <% end %>
 
