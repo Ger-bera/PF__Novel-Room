@@ -1,0 +1,15 @@
+<table class="table">
+  <tbody>
+   <% novel.novel_comments.each do |ncomment| %>
+      <tr>
+        <td>
+          <%= link_to ncomment.user.name,user_path(ncomment.user.id) %>
+          <%= ncomment.comment %>
+          <% if ncomment.user == current_user %>
+            <%= link_to "削除", room_novel_novel_comment_path(ncomment.novel.room ,ncomment.novel, ncomment), method: :delete, remote:true %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

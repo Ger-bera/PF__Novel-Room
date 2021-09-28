@@ -1,18 +1,20 @@
-<div class="container mx-auto h-auto shadow">
-  <%= form_with model: [@room_tag,@room], local:true do |f| %>
-    <div class="m-2">
-      <%= f.label :room_name, "部屋の名前" %>
-      <%= f.text_field :room_name, placeholder: "部屋の名前を入力してください",class: "w-100" %>
-    </div>
-    <div class="m-2">
-      <%= f.label :world_body, "部屋の設定" %>
-      <%= f.text_area :world_body, placeholder: "設定を入力してください。マークダウン記法でも入力可能です。",class: "w-100", size: "400x17"%>
-    </div>
-    <div class="m-2">
-      <%= f.label :tag_name, "タグの設定"%>
-      <%= f.text_field :tag_name, placeholder: "タグをスペース区切りで入力してください",class: "w-100" %>
-    </div>
+<div id="room_new">
+  <div class="container mx-auto shadow">
+    <%= form_with model: [@room_tag,@room], local:true do |f| %>
+      <div class="m-2">
+        <%= f.label :room_name, "部屋の名前" %>
+        <%= f.text_field :room_name, placeholder: "部屋の名前を入力してください",class: "w-100" %>
+      </div>
+      <div class="m-2">
+        <%= f.label :world_body, "部屋の設定" %>
+        <%= f.text_area :world_body, placeholder: "設定を入力してください。マークダウン記法でも入力可能です。",class: "w-100", size: "400x17"%>
+      </div>
+      <div class="m-2">
+        <%= f.label :tag_name, "タグの設定"%>
+        <%= f.text_field :tag_name, placeholder: "タグをスペース区切りで入力してください",class: "w-100" %>
+      </div>
 
-    <%= f.submit "部屋を作成",class: "m-2" %>
-  <% end %>
+      <%= f.submit "部屋を作成",class: "btn btn-outline-dark btn-sm m-1" %>
+    <% end %>
+  </div>
 </div>

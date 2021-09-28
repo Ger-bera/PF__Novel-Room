@@ -5,6 +5,7 @@
     <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-link" %></li>
     <li><%= link_to "マイページ", user_path(current_user),class: "header-link" %></li>
     <li><%= link_to "Novel-Roomとは？", about_path,class: "header-link" %></li>
+    <li><%= link_to "小説一覧", all_novels_path,class: "header-link" %></li>
     <li><%= link_to "部屋一覧", rooms_path,class: "header-link"%>
       <ul class="drop">
         <div>
@@ -12,7 +13,6 @@
         </div>
       </ul>
     </li>
-    <li><%= link_to "小説一覧", all_novels_path,class: "header-link" %></li>
     <li>
       <%= link_to (notifications_path) do %>
         <% if unchecked_notifications.any? %>

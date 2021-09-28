@@ -13,9 +13,10 @@
         <%= "さんが"%>
         <% case notification.action %>
           <% when 'bookmark' then %>
-            <%= "あなたの作品をブックマークしました"%>
+            <%= link_to "あなたの投稿", room_novel_path(notification.novel.room_id,notification.novel.id), style: "font-weight: bold;" %>
+            <%= "をブックマークしました" %>
           <% when 'favorite' then %>
-            <%= link_to "あなたの作品", notification.novel, style: "font-weight: bold;" %>
+            <%= link_to "あなたの投稿", room_novel_path(notification.novel.room_id,notification.novel.id), style: "font-weight: bold;" %>
             <%= "にいいねしました" %>
           <% when 'novelcomment' then %>
             <% if notification.novel.user_id == visited.id %>

@@ -1,4 +1,5 @@
 <div class="container shadow rounded mx-auto">
+  Room : <%= link_to @novel.room.room_name, room_path(@novel.room_id) %>
   筆者: <%= link_to @novel.user.name,user_path(@novel.user) %>
   タイトル: <%= @novel.title %>
   <% if @novel.novel_tags.present? %>
@@ -22,47 +23,17 @@
     <%= link_to "削除する", room_novel_path(@novel.id), method: :delete, date: {confirm: "本当に削除しますか？"} %>
   <% end %>
 
-  <% if user_signed_in? %>
-    <% if @novel.favorited_by?(current_user) %>
-      <p>
-        いいね:
-        <%= link_to room_novel_novel_favorite_path(@novel.room_id,@novel), method: :delete, remote: true do %>
-          ♥<%= @novel.novel_favorites.count %>
-        <% end %>
-      </p>
-    <% else %>
-      <p>
-        いいね:
-        <%= link_to room_novel_novel_favorites_path(@novel.room_id,@novel), method: :post, remote: true do %>
-          ♡<%= @novel.novel_favorites.count %>
-        <% end %>
-      </p>
-    <% end %>
-  <% else %>
-    <p class="m-2">
-      いいね : ♡<%= @novel.novel_favorites.count %>
-    </p>
+  <div id="favorites_btns_<%= @novel.id %>">
+    <%= render partial: "favorites",locals: {novel: @novel, favorite: @favorite} %>
+  </div>
+
+  <div id="comments">
+    <%= render "comments", novel: @novel %>
+  </div>
+
+  <%= form_with model:[@novel, @novel_comment], url: "/rooms/#{@novel.room_id}/novels/#{@novel.id}/novel_comments/#{@novel_comment.id}",method: :post do |f| %>
+    <%= f.text_area :comment,placeholder: "コメントはここに",size: "30x5" %>
+    <%= f.submit "送信する" %>
   <% end %>
-
-  <table class="table">
-    <tbody>
-     <% @novel.novel_comments.each do |ncomment| %>
-        <tr>
-          <td>
-            <%= link_to ncomment.user.name,user_path(ncomment.user.id) %>
-            <%= ncomment.comment %>
-            <% if ncomment.user == current_user %>
-              <%= link_to "削除", room_novel_novel_comment_path(ncomment.novel.room ,ncomment.novel, ncomment), method: :delete, remote:true %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <%= form_with model:[@novel, @novel_comment], url: "/rooms/#{@novel.room_id}/novels/#{@novel.id}/novel_comments/#{@novel_comment.id}",method: :post, local:true do |f| %>
-      <%= f.text_area :comment,placeholder: "コメントはここに",size: "30x5" %>
-      <%= f.submit "送信する" %>
-    <% end %>
 </div>
 

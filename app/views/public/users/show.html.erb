@@ -1,4 +1,4 @@
-<div class="container rounded shadow">
+<div class="container rounded shadow mx-auto">
   <h2>プロフィール</h2>
   <p>ユーザー名: <%= @user.name %></p>
   <table>
@@ -10,7 +10,7 @@
           <th>タイトル</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="text-center">
         <% @user.bookmarks.each do |bookmark| %>
           <tr>
             <td><%= bookmark.novel.user.name %></td>

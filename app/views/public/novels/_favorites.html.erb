@@ -1,0 +1,21 @@
+ <% if user_signed_in? %>
+    <% if novel.favorited_by?(current_user) %>
+      <p>
+        いいね:
+        <%= link_to room_novel_novel_favorite_path(novel.room_id,novel.id,novel.novel_favorites.find_by(user_id: current_user)), method: :delete, remote: true do %>
+          ♥<%= novel.novel_favorites.count %>
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        いいね:
+        <%= link_to room_novel_novel_favorites_path(novel.room_id,novel.id), method: :post, remote: true do %>
+          ♡<%= novel.novel_favorites.count %>
+        <% end %>
+      </p>
+    <% end %>
+  <% else %>
+    <p class="m-2">
+      いいね : ♡<%= novel.novel_favorites.count %>
+    </p>
+  <% end %>

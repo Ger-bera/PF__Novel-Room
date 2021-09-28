@@ -1,4 +1,5 @@
 class Public::RoomCommentsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
      @comment = current_user.room_comments.new(comment_params)

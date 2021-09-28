@@ -8,6 +8,24 @@ class Room < ApplicationRecord
 
   belongs_to :user
 
+  def save_notification_roomcomment(current_user, room_comment_id, visited_id)
+    # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
+    notification = current_user.active_notifications.new(
+      room_id: id,
+      room_comment_id: room_comment_id,
+      visited_id: visited_id,
+      action: 'roomcomment'
+    )
+    # 自分の投稿に対するコメントの場合は、通知済みとする
+    if notification.visitor_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
+  end
+
+
+
+
   def favorited_by?(user)
    room_favorites.where(user_id: user.id).exists?
   end

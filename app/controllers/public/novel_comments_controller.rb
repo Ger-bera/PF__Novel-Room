@@ -1,4 +1,5 @@
 class Public::NovelCommentsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @comment = current_user.novel_comments.new(comment_params)
@@ -7,7 +8,6 @@ class Public::NovelCommentsController < ApplicationController
     visited_id = @novel.user_id
     if @comment.save
       @novel.save_notification_novelcomment(current_user,@comment.id,visited_id )
-      redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)
     end
@@ -16,7 +16,7 @@ class Public::NovelCommentsController < ApplicationController
   def destroy
     @comment = NovelComment.find(params[:id])
     @comment.destroy
-    redirect_back(fallback_location: root_path)
+    @novel = @comment.novel
   end
 
   private

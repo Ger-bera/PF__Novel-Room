@@ -32,7 +32,7 @@ class Novel < ApplicationRecord
   end
 
   def favorited_by?(user)
-   novel_favorites.where(user_id: user.id).exists?
+    novel_favorites.where(user_id: user.id).exists?
   end
 
   def self.novels_serach(search)

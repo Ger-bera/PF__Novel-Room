@@ -24,5 +24,7 @@ $(window).on('scroll', function(){
 
   if(bgPosition){
     $('#top-image').css('background-position', 'center top -'+ bgPosition + 'px');
+    $('#notifications').css('background-position', 'center top -'+ bgPosition + 'px');
+    $('.novel_index').css('background-position', 'center top -'+ bgPosition + 'px');
   }
 });

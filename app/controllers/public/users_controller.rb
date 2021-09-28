@@ -1,11 +1,11 @@
 class Public::UsersController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :correct_post,only: [:edit]
 
   def show
     @user = User.find(params[:id])
-    @bookmarks = Bookmark.where(user_id: current_user.id)
+    @bookmarks = Bookmark.where(user_id: current_user.id) if user_signed_in?
     @novels = @user.novels
     @rooms = @user.rooms
   end
