@@ -1,30 +1,35 @@
-<div class="container">
-  <h2>ログイン</h2>
-  <%= flash[:error] %>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="container shadow rounded mx-auto row">
+  <div class="col-5">
+    <h2>ログイン</h2>
+    <%= flash[:error] %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-    <div class="form-group">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
-    </div>
-
-    <% if devise_mapping.rememberable? %>
       <div class="form-group">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="form-group">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in" %>
       </div>
     <% end %>
 
-    <div class="actions">
-      <%= f.submit "Log in" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
+    <%= render "devise/shared/links" %>
+  </div>
+  <div class="col-7">
+    <img src="https://images.pexels.com/photos/2079451/pexels-photo-2079451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class="about-img">
+  </div>
 </div>
 

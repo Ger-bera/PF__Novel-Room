@@ -1,6 +1,6 @@
 <div class=novel_index>
-  <div class="container shadow-sm mx-auto">
-    <h1>小説の一覧</h1>
+  <div class="container shadow-sm mx-auto rounded">
+    <h1>Novel一覧</h1>
     <div class="all-row">
       <% @novels.each do |novel| %>
         <div class="m-2 shadow p-0">
@@ -18,5 +18,5 @@
       <% end %>
     </div>
   </div>
-  <%= paginate @novels %>
+  <%= paginate @novels, theme: 'twitter-bootstrap-4' %>
 </div>

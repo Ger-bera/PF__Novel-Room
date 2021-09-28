@@ -1,28 +1,28 @@
-<div class="container shadow mx-auto">
-  <h1>部屋の一覧ページだよ！</h1>
-  <div class="all-row">
-    <% @rooms.each do |room| %>
-      <div class="m-2 shadow p-0">
-        <div class="card">
-          <img src="https://images.pexels.com/photos/2909959/pexels-photo-2909959.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-          <div class="card-body">
-            <p class="card-text"><%= link_to room.room_name, room_path(room.id) %></p>
-            <% if room.room_tags.present? %>
-                <% room.room_tags.each do |room_tag| %>
-                  <!--room.rbで「through」を使ったことで記述可能に-->
-                  <%= link_to "##{room_tag.tag_name}", rooms_path(tag_id: room_tag) %>
-                <% end %>
-            <% else %>
-              <div>
-                タグはありません。
-              </div>
-            <% end %>
+<div class="rooms_index">
+  <div class="container shadow mx-auto rounded">
+    <h1>Room一覧</h1>
+    <div class="all-row">
+      <% @rooms.each do |room| %>
+        <div class="m-2 shadow p-0">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/2909959/pexels-photo-2909959.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+            <div class="card-body">
+              <p class="card-text"><%= link_to room.room_name, room_path(room.id) %></p>
+              <% if room.room_tags.present? %>
+                  <% room.room_tags.each do |room_tag| %>
+                    <!--room.rbで「through」を使ったことで記述可能に-->
+                    <%= link_to "##{room_tag.tag_name}", rooms_path(tag_id: room_tag) %>
+                  <% end %>
+              <% else %>
+                <div>
+                  タグはありません。
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+   <%= paginate @rooms, theme: 'twitter-bootstrap-4' %>
   </div>
- <%= paginate @rooms %>
-
 </div>
-

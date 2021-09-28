@@ -41,7 +41,6 @@ main
  }
 
  .container{
-  background-color: white;
   margin: 30px;
 }
 
@@ -195,10 +194,6 @@ a:hover{
   background-size: 110%;
   background-position: center top;
   padding-top: 30px;
-
-  .container{
-    background-color: rgba(255,255,255,0.9)
-  }
 }
 
 .novel_index{
@@ -222,10 +217,6 @@ a:hover{
   background-size: 110%;
   background-position: center top;
   padding-top: 30px;
-
-  .container{
-    background-color: rgba(255,255,255,0.9)
-  }
 }
 
 #room_new{
@@ -238,11 +229,11 @@ a:hover{
   background-size: 110%;
   background-position: center top;
   padding-top: 30px;
+}
 
-  .container{
+.container{
     background-color: rgba(255,255,255,0.9)
   }
-}
 
 .fixed-bg {
   min-height: 100%;
@@ -332,3 +323,17 @@ a:hover{
   background-image: image-url("pexels-kaboompics-com-5834");
 }
 
+.pagination {
+  justify-content: center;
+  margin: 20px;
+}
+
+.rooms_index{
+  background-image: image-url("pexels-photo-5613402");
+  padding-top: 30px;
+}
+
+.my_page{
+  background-image: image-url("pexels-max-vakhtbovych-5998034");
+  padding-top: 30px;
+}

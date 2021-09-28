@@ -2,7 +2,7 @@
    <div class="container shadow mx-auto rounded">
     <% if @notifications.exists? %>
       <%= render "notifications", notifications: @notifications %>
-      <%= paginate @notifications %>
+      <%= paginate @notifications, theme: 'twitter-bootstrap-4' %>
     <% else %>
       <p>通知はありません</p>
     <% end %>

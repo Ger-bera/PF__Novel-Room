@@ -1,85 +1,97 @@
-<div class="container rounded shadow mx-auto">
-  <h2>プロフィール</h2>
-  <p>ユーザー名: <%= @user.name %></p>
-  <table>
-    <h4>ブックマーク一覧</h4>
-    <% if @user.bookmarks.present? %>
-      <thead>
-        <tr>
-          <th>投稿者名</th>
-          <th>タイトル</th>
-        </tr>
-      </thead>
-      <tbody class="text-center">
-        <% @user.bookmarks.each do |bookmark| %>
+<div class="my_page">
+  <div class="container rounded shadow mx-auto">
+    <div class="container rounded shadow-sm mx-auto">
+      <h3>プロフィール</h3>
+      <p>ユーザー名: <%= @user.name %></p>
+      <table>
+        <h4>ブックマーク一覧</h4>
+        <% if @user.bookmarks.present? %>
+          <thead>
+            <tr>
+              <th>投稿者名</th>
+              <th>タイトル</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <% @user.bookmarks.each do |bookmark| %>
+              <tr>
+                <td><%= bookmark.novel.user.name %></td>
+                <td>
+                  <%= link_to room_novel_path(bookmark.novel) do %>
+                    <%= bookmark.novel.title %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% else %>
+         <tbody>
+           <tr>
+             <td>
+               まだブックマークはありません。
+             </td>
+           </tr>
+         </tbody>
+        <% end %>
+      </table>
+      <%= paginate @bookmarks, :param_name => 'bookmarks_page', theme: 'twitter-bootstrap-4' %>
+    </div>
+
+    <div class="container rounded shadow-sm mx-auto">
+      <table>
+        <h4>投稿小説一覧</h4>
+        <% if @novels.present? %>
+        <tbody>
+          <% @novels.each do |novel| %>
+            <tr>
+              <td>
+                <%= link_to novel.title, room_novel_path(novel.id) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+        <% else %>
+        <tbody>
           <tr>
-            <td><%= bookmark.novel.user.name %></td>
             <td>
-              <%= link_to room_novel_path(bookmark.novel) do %>
-                <%= bookmark.novel.title %>
-              <% end %>
+              投稿した小説はありません。
             </td>
           </tr>
+        </tbody>
         <% end %>
-      </tbody>
-    <% else %>
-     <tbody>
-       <tr>
-         <td>
-           まだブックマークはありません。
-         </td>
-       </tr>
-     </tbody>
-    <% end %>
-  </table>
-  <table>
-    <h4>投稿小説一覧</h4>
-    <% if @novels.present? %>
-    <tbody>
-      <% @novels.each do |novel| %>
-        <tr>
-          <td>
-            <%= link_to novel.title, room_novel_path(novel.id) %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-    <% else %>
-    <tbody>
-      <tr>
-        <td>
-          投稿した小説はありません。
-        </td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
-  <table>
-    <h4>作成部屋一覧</h4>
-    <% if @rooms.present? %>
-    <tbody>
-      <% @rooms.each do |room| %>
-        <tr>
-          <td>
-            <%= link_to room.room_name, room_path(room.id) %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-    <% else %>
-    <tbody>
-      <tr>
-        <td>
-          投稿した小説はありません。
-        </td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
+      </table>
+      <%= paginate @novels, :param_name => 'novels_page', theme: 'twitter-bootstrap-4' %>
+    </div>
 
-  <% if user_signed_in? && @user.id == current_user.id %>
-    <%= link_to "編集", edit_user_path(current_user) %>
-    <%= link_to "退会ページ", unsubscribe_user_path(current_user) %>
-  <% end %>
+    <div class="container rounded shadow-sm mx-auto">
+      <table>
+        <h4>作成部屋一覧</h4>
+        <% if @rooms.present? %>
+        <tbody>
+          <% @rooms.each do |room| %>
+            <tr>
+              <td>
+                <%= link_to room.room_name, room_path(room.id) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+        <% else %>
+        <tbody>
+          <tr>
+            <td>
+              投稿した小説はありません。
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      <%= paginate @rooms, :param_name => 'rooms_page', theme: 'twitter-bootstrap-4' %>
+    </div>
 
+    <% if user_signed_in? && @user.id == current_user.id %>
+      <%= link_to "編集", edit_user_path(current_user) %>
+      <%= link_to "退会ページ", unsubscribe_user_path(current_user) %>
+    <% end %>
+  </div>
 </div>

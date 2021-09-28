@@ -16,18 +16,18 @@ class Public::NovelsController < ApplicationController
       novels = Novel.all.where(room_id: params[:room_id]).order(created_at: :desc)
     end
     @tag_lists = NovelTag.all
-    @novels = Kaminari.paginate_array(novels).page(params[:page]).per(10)
+    @novels = Kaminari.paginate_array(novels).page(params[:page]).per(9)
   end
 
   def all_index
     @novels = Novel.all
-    @novels = Kaminari.paginate_array(@novels).page(params[:page]).per(10)
+    @novels = Kaminari.paginate_array(@novels).page(params[:page]).per(9)
   end
 
   def search_tag
     @tag_id = params[:tag_id]
     @novels = Novel.where(id: NovelTagmap.where(novel_tag_id: @tag_id).pluck(:novel_id))
-    @novels = Kaminari.paginate_array(@novels).page(params[:page]).per(10)
+    @novels = Kaminari.paginate_array(@novels).page(params[:page]).per(9)
     render "index"
   end
 
