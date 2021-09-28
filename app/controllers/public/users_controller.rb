@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     bookmarks = Bookmark.where(user_id: current_user.id) if user_signed_in?
-    @bookmarks = Kaminari.paginate_array(bookmarks).page(params[:bookmarks_page]).per(10)
+    @bookmarks = Kaminari.paginate_array(bookmarks).page(params[:bookmarks_page]).per(10) if user_signed_in?
     novels = @user.novels
     @novels = Kaminari.paginate_array(novels).page(params[:novels_page]).per(10)
     rooms = @user.rooms
