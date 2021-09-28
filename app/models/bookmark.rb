@@ -11,6 +11,7 @@ class Bookmark < ApplicationRecord
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, novel.user_id, 'bookmark'])
     if temp.blank?
       notification = current_user.active_notifications.new(
+        novel_id: novel_id,
         visited_id: novel.user_id,
         action: 'bookmark'
       )
