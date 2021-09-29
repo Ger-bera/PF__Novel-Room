@@ -8,6 +8,9 @@ module Public::MarkdownHelper
     }
 
     extensions = {
+      lax_spacing: true,
+      strikethrough: true,
+      superscript: true,
       autolink: true,
       no_intra_emphasis: true,
       fenced_code_blocks: true,

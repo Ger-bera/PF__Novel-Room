@@ -337,3 +337,10 @@ a:hover{
   background-image: image-url("pexels-max-vakhtbovych-5998034");
   padding-top: 30px;
 }
+
+.markdown_text{
+  strong {
+    -webkit-text-emphasis: filled dot black;
+            text-emphasis: filled dot black;
+  }
+}

@@ -1,26 +1,31 @@
 <div class="container shadow rounded mx-auto">
-  Room : <%= link_to @novel.room.room_name, room_path(@novel.room_id) %>
-  筆者: <%= link_to @novel.user.name,user_path(@novel.user) %>
-  タイトル: <%= @novel.title %>
-  <% if @novel.novel_tags.present? %>
-    <% @novel.novel_tags.each do |novel_tag| %>
-      <!--novel.rbで「through」を使ったことで記述可能に-->
-      <%= link_to "##{novel_tag.tag_name}", room_novels_path(tag_id: novel_tag.id) %>
+  <div class="m-2">
+    Room : <%= link_to @novel.room.room_name, room_path(@novel.room_id) %>
+    筆者: <%= link_to @novel.user.name,user_path(@novel.user) %>
+    タイトル: <%= @novel.title %>
+    <% if @novel.novel_tags.present? %>
+      <% @novel.novel_tags.each do |novel_tag| %>
+        <!--novel.rbで「through」を使ったことで記述可能に-->
+        <%= link_to "##{novel_tag.tag_name}", room_novels_path(tag_id: novel_tag.id) %>
+      <% end %>
+    <% else %>
+      タグはありません。
     <% end %>
-  <% else %>
-    タグはありません。
-  <% end %>
-  <%= markdown(@novel.body).html_safe %>
+  </div>
+
+  <div class="markdown_text">
+    <%= markdown(@novel.body).html_safe %>
+  </div>
 
   <% if @novel.bookmarked_by?(current_user) %>
-    <%= link_to "ブックマークを外す", room_novel_bookmarks_path(@novel.room_id, @novel), method: :delete %>
+    <%= link_to "ブックマークを外す", room_novel_bookmarks_path(@novel.room_id, @novel), method: :delete, class: "btn btn-outline-dark btn-sm m-1" %>
   <% else %>
-    <%= link_to "ブックマーク", room_novel_bookmarks_path(@novel.room_id, @novel), method: :post %>
+    <%= link_to "ブックマーク", room_novel_bookmarks_path(@novel.room_id, @novel), method: :post, class: "btn btn-outline-dark btn-sm m-1" %>
   <% end %>
 
   <% if @novel.user == current_user %>
-    <%= link_to "編集する", edit_room_novel_path(@novel.id) %>
-    <%= link_to "削除する", room_novel_path(@novel.id), method: :delete, date: {confirm: "本当に削除しますか？"} %>
+    <%= link_to "編集する", edit_room_novel_path(@novel.id) , class: "btn btn-outline-dark btn-sm m-1"%>
+    <%= link_to "削除する", room_novel_path(@novel.id), method: :delete, date: {confirm: "本当に削除しますか？"}, class: "btn btn-outline-dark btn-sm m-1" %>
   <% end %>
 
   <div id="favorites_btns_<%= @novel.id %>">
@@ -33,7 +38,7 @@
 
   <%= form_with model:[@novel, @novel_comment], url: "/rooms/#{@novel.room_id}/novels/#{@novel.id}/novel_comments/#{@novel_comment.id}",method: :post do |f| %>
     <%= f.text_area :comment,placeholder: "コメントはここに",size: "30x5" %>
-    <%= f.submit "送信する" %>
+    <%= f.submit "送信する" , class: "btn btn-outline-dark btn-sm m-1"%>
   <% end %>
 </div>
 
