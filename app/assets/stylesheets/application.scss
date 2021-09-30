@@ -69,7 +69,7 @@ main{
 
 #top-image{
   width: 100%;
-  height: 100vh;
+  height: 900px;
   background-image: image-url("pexels-janko-ferlic-590493.jpg");
   background-repeat: no-repeat;
   background-size: 150%;
@@ -121,9 +121,11 @@ $secondarycolor: #00ADB5;
     min-width: $min-width;
   }
 }
+
 li{
   margin: 0;
 }
+
 .drop{
     overflow: hidden;
     list-style: none;
@@ -190,7 +192,7 @@ a:hover{
   background-image: image-url("pexels-photo-101710");
   background-color:rgba(255,255,255,0.3);
   background-blend-mode:lighten;
-  height: 100vh;
+  height: 900px;
   background-size: 110%;
   background-position: center top;
   padding-top: 30px;
@@ -201,7 +203,7 @@ a:hover{
   background-image: image-url("pexels-photo-433333");
   background-color:rgba(255,255,255,0.3);
   background-blend-mode:lighten;
-  height: 100vh;
+  height: 1300px;
   background-size: 110%;
   background-position: center top;
   padding-top: 30px;
@@ -213,7 +215,7 @@ a:hover{
   background-color:rgba(255,255,255,0.3);
   background-blend-mode:lighten;
   background-attachment: fixed;
-  height: 100vh;
+  height: 900px;
   background-size: 110%;
   background-position: center top;
   padding-top: 30px;
@@ -335,6 +337,11 @@ a:hover{
 
 .my_page{
   background-image: image-url("pexels-max-vakhtbovych-5998034");
+  width: 100%;
+  background-attachment: fixed;
+  height: 1300px;
+  background-size: 110%;
+  background-position: center top;
   padding-top: 30px;
 }
 

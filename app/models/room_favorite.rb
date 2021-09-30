@@ -10,6 +10,7 @@ class RoomFavorite < ApplicationRecord
   # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(
+      room_id: room.id,
       room_favorite_id: id,
       visited_id: room.user_id,
       action: 'roomfavorite'
@@ -21,6 +22,5 @@ class RoomFavorite < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
 
 end

@@ -69,4 +69,6 @@
   <% if user_signed_in?%>
     <%= link_to "Novelを投稿する",  new_room_novel_path(@room.id), class: "btn btn-outline-dark btn-sm m-1" %>
   <% end %>
+
+  <%= link_to "このRoomのNovel一覧",  room_novels_path(@room.id), class: "btn btn-outline-dark btn-sm m-1" %>
 </div>

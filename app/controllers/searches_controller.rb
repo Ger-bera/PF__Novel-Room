@@ -5,6 +5,7 @@ class SearchesController < ApplicationController
     @content = params[:content]
     @method = params[:method]
     @records = search_for(@model, @content, @method)
+    @records = @records.page(params[:page]).per(9)
   end
 
   private

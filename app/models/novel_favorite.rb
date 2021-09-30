@@ -25,8 +25,4 @@ class NovelFavorite < ApplicationRecord
     end
   end
 
-
-
-
-
 end

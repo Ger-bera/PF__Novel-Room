@@ -13,16 +13,24 @@
         <%= "さんが"%>
         <% case notification.action %>
           <% when 'bookmark' then %>
-            <%= link_to "あなたの投稿", room_novel_path(notification.novel.room_id,notification.novel.id), style: "font-weight: bold;" %>
+            <%= link_to "あなたのNovel", room_novel_path(notification.novel.room_id,notification.novel.id), style: "font-weight: bold;" %>
             <%= "をブックマークしました" %>
           <% when 'favorite' then %>
-            <%= link_to "あなたの投稿", room_novel_path(notification.novel.room_id,notification.novel.id), style: "font-weight: bold;" %>
+            <%= link_to "あなたのNovel", room_novel_path(notification.novel.room_id,notification.novel.id), style: "font-weight: bold;" %>
             <%= "にいいねしました" %>
           <% when 'novelcomment' then %>
             <% if notification.novel.user_id == visited.id %>
-              <%= link_to "あなたの投稿", room_novel_path(notification.novel.room_id,notification.novel.id), style: "font-weight: bold;" %>
+              <%= link_to "あなたのNovel", room_novel_path(notification.novel.room_id,notification.novel.id), style: "font-weight: bold;" %>
               <%= "にコメントしました"%>
-          <% end %>
+            <% end %>
+          <% when 'roomfavorite' then %>
+            <%= link_to "あなたのRoom", room_path(notification.room_id), style: "font-weight: bold;" %>
+            <%= "にいいねしました" %>
+          <% when 'roomcomment' then %>
+            <% if notification.room.user_id == visited.id %>
+              <%= link_to "あなたのRoom", room_path(notification.room_id), style: "font-weight: bold;" %>
+              <%= "にコメントしました"%>
+            <% end %>
         <% end %>
       </span>
     </div>
