@@ -47,7 +47,7 @@
           <% @novels.each do |novel| %>
             <tr>
               <td>
-                <%= link_to novel.title, room_novel_path(novel.id) %>
+                <%= link_to novel.title, room_novel_path(novel.room_id,novel.id) %>
               </td>
             </tr>
           <% end %>

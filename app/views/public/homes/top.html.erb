@@ -2,28 +2,28 @@
   <%= flash[:notice] %>
   <div　class="container shadow">
     <div class = "col-12" style = "position: relative;" >
-        <%= image_tag "pexels-janko-ferlic-590493.jpg" , class:"d-block mx-auto",size: "660x440", :style=>" opacity: 1; padding: 30px 0;" %>
-        <p style = "position: absolute; top: 50%;left: 50%; font-size: 4.5em; -ms-transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); margin:0; padding:0; color: rgba(255,255,255,0.7);">
-          Novel Room
-        </p>
-      </div>
-      <div class="container container-top shadow my-30 mx-auto py-30">
-        <h5>小説ランキング</h5>
-        <% @all_novelranks.each.with_index(1) do |n, i| %>
-        <div class="m-2">
+      <%= image_tag "pexels-janko-ferlic-590493.jpg" , class:"d-block mx-auto",size: "660x440", :style=>" opacity: 1; padding: 30px 0;" %>
+      <p style = "position: absolute; top: 50%;left: 50%; font-size: 4.5em; -ms-transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); margin:0; padding:0; color: rgba(255,255,255,0.7);">
+        Novel Room
+      </p>
+    </div>
+    <div class="container container-top shadow my-30 mx-auto py-30">
+      <h5>小説ランキング</h5>
+      <% @all_novelranks.each.with_index(1) do |n, i| %>
+        <p class="m-2">
           <%= i %>位: <%= link_to n.title, room_novel_path(n.room_id,n.id) %>
           （いいね数: <%= n.novel_favorites.count %>）
-        </div>
-        <% end %>
-      </div>
-      <div class="container container-top shadow my-30 mx-auto py-30">
-        <h5>部屋ランキング</h5>
-        <% @all_roomranks.each.with_index(1) do |r, i| %>
-        <div class="m-2">
-            <%= i %>位: <%= link_to r.room_name, room_path(r.id) %>
-            (いいね数: <%= r.room_favorites.count %>)
-        </div>
-        <% end %>
-      </div>
+        </p>
+      <% end %>
+    </div>
+    <div class="container container-top shadow my-30 mx-auto">
+      <h5>部屋ランキング</h5>
+      <% @all_roomranks.each.with_index(1) do |r, i| %>
+        <p class="m-2">
+          <%= i %>位: <%= link_to r.room_name, room_path(r.id) %>
+          (いいね数: <%= r.room_favorites.count %>)
+        </p>
+      <% end %>
+    </div>
   </div>
 </div>
