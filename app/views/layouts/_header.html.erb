@@ -1,41 +1,49 @@
-<nav class="text-center">
-  <%= link_to image_tag("logo.png", size: "50x50"), root_path, class: "image mt-2" %>
-  <ul id="main">
-    <% if user_signed_in? %>
-    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-link" %></li>
-    <li><%= link_to "マイページ", user_path(current_user),class: "header-link" %></li>
-    <li><%= link_to "Novel-Roomとは？", about_path,class: "header-link" %></li>
-    <li><%= link_to "小説一覧", all_novels_path,class: "header-link" %></li>
-    <li><%= link_to "部屋一覧", rooms_path,class: "header-link"%>
-      <ul class="drop">
-        <div>
-        <li><%= link_to "部屋作成", new_room_path, class: "header-link" %></li>
-        </div>
-      </ul>
-    </li>
-    <li>
-      <%= link_to (notifications_path) do %>
-        <% if unchecked_notifications.any? %>
-          <span class="fa-stack">
-            <i class="far fa-bell fa-lg fa-stack-2x", style="font-size: 1.5em;"></i>
-            <i class="fas fa-circle n-circle fa-stack-1x"></i>
-          </span>
-        <% else %>
-          <i class="far fa-bell fa-lg", style="font-size: 1.5em"></i>
+<nav class="text-center navbar">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end flex-column" id="navbarSupportedContent">
+    <%= link_to image_tag("logo.png", size: "70x60"), root_path, class: "image mt-2 navbar-brand" %>
+    <ul id="main", class="navbar-nav">
+      <% if user_signed_in? %>
+      <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-link" %></li>
+      <li class="nav-item"><%= link_to "マイページ", user_path(current_user),class: "header-link" %></li>
+      <li class="nav-item"><%= link_to "Novel-Roomとは？", about_path,class: "header-link" %></li>
+      <li class="nav-item"><%= link_to "小説一覧", all_novels_path,class: "header-link" %></li>
+      <li class="nav-item"><%= link_to "部屋一覧", rooms_path,class: "header-link"%>
+        <ul class="drop">
+          <div>
+          <li><%= link_to "部屋作成", new_room_path, class: "header-link" %></li>
+          </div>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <%= link_to (notifications_path) do %>
+          <% if unchecked_notifications.any? %>
+            <span class="fa-stack">
+              <i class="far fa-bell fa-lg fa-stack-2x", style="font-size: 1.5em;"></i>
+              <i class="fas fa-circle n-circle fa-stack-1x"></i>
+            </span>
+          <% else %>
+            <i class="far fa-bell fa-lg", style="font-size: 1.5em"></i>
+          <% end %>
         <% end %>
+      </li>
+      <% else %>
+      <li class="nav-item"><%= link_to "ログイン", new_user_session_path,class: "header-link" %></li>
+      <li class="nav-item"><%= link_to "Novel-Roomとは？", about_path,class: "header-link" %></li>
+      <li class="nav-item"><%= link_to "部屋一覧", rooms_path,class: "header-link"%></li>
+      <li class="nav-item"><%= link_to "小説一覧", all_novels_path,class: "header-link" %></li>
       <% end %>
-    </li>
-    <% else %>
-    <li><%= link_to "ログイン", new_user_session_path,class: "header-link" %></li>
-    <li><%= link_to "Novel-Roomとは？", about_path,class: "header-link" %></li>
-    <li><%= link_to "部屋一覧", rooms_path,class: "header-link"%></li>
-    <li><%= link_to "小説一覧", all_novels_path,class: "header-link" %></li>
-    <% end %>
-    <div id="marker"></div>
-  </ul>
-  <%= form_with url: search_path, method: :get, class: "d-inline-flex m-2", local: true do %>
-      <%= text_field_tag 'content' %>
-      <%= select_tag 'model', options_for_select({ "作者" => "user", "部屋" => "room", "小説" => "novel", "部屋のタグ" => "room_tag", "小説のタグ" => "novel_tag" }) %>
-      <%= submit_tag '検索' %>
-    <% end %>
+      <div id="marker"></div>
+    </ul>
+
+  </div>
+  <%= form_with url: search_path, method: :get, class: "d-inline-flex m-2 mx-auto", local: true do %>
+    <%= text_field_tag 'content' %>
+    <%= select_tag 'model', options_for_select({ "作者" => "user", "部屋" => "room", "小説" => "novel", "部屋のタグ" => "room_tag", "小説のタグ" => "novel_tag" }) %>
+    <%= submit_tag '検索' %>
+  <% end %>
 </nav>

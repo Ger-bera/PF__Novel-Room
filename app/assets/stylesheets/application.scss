@@ -48,7 +48,6 @@ main
  header{
   background-color: rgb(57,62,70);
   text-decoration: none;
-  height: 105px;
  }
 
 header a,
@@ -57,8 +56,9 @@ header a,
  }
 
 main{
-  padding-top: 100px;
+  padding-top: 50px;
 }
+
 .container{
   background-color: white;
   padding: 30px;
@@ -346,4 +346,8 @@ a:hover{
     -webkit-text-emphasis: filled dot black;
             text-emphasis: filled dot black;
   }
+}
+
+.navbar-toggler{
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
