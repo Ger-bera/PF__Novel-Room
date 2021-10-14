@@ -1,12 +1,14 @@
 <div id="top-image">
   <%= flash[:notice] %>
   <div>
+
     <div class = "col-12" style = "position: relative;" >
       <%= image_tag "pexels-janko-ferlic-590493.jpg" , class:"d-block mx-auto",size: "660x440", :style=>" opacity: 1; padding: 50px 0;" %>
       <p style = "position: absolute; top: 50%;left: 50%; font-size: 4.5em; -ms-transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); margin:0; padding:0; color: rgba(255,255,255,0.7);">
         Novel Room
       </p>
     </div>
+
     <div class="container container-top shadow my-30 mx-auto py-30">
       <h5>小説ランキング</h5>
       <% @all_novelranks.each.with_index(1) do |n, i| %>
@@ -16,6 +18,7 @@
         </p>
       <% end %>
     </div>
+
     <div class="container container-top shadow my-30 mx-auto">
       <h5>部屋ランキング</h5>
       <% @all_roomranks.each.with_index(1) do |r, i| %>
@@ -25,5 +28,6 @@
         </p>
       <% end %>
     </div>
+
   </div>
 </div>
