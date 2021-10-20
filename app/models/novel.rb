@@ -50,7 +50,7 @@ class Novel < ApplicationRecord
 
    new_tags.each do |new_name|
     novel_tag = NovelTag.find_by(tag_name: new_name)
-    novel_tag = NovelTag.create(tag_name: new_name) if novel_tag.nil?
+    novel_tag = NovelTag.create(tag_name: new_name, novel_id: self.id) if novel_tag.nil?
     self.novel_tags << novel_tag #見えないけど中間テーブルを経由している
    end
   end
