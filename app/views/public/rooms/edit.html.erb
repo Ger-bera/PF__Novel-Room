@@ -1,19 +1,20 @@
-<h1>部屋の編集ページ</h1>
-<div>
-  <%= form_with model: [@room_tag,@room],local:true do |f| %>
-    <div>
-      <%= f.label :room_name, "部屋の名前" %>
-      <%= f.text_field :room_name %>
-    </div>
-    <div>
-      <%= f.label :world_body, "部屋の設定" %>
-      <%= f.text_area :world_body %>
-    </div>
-    <div>
-      <%= f.label :tag_name, "タグの設定(半角スペースで区切ってください)"%>
-      <%= f.text_field :tag_name, value: @room.room_tags.map {|tag| tag.tag_name}.join(" ") %>
-    </div>
+<div class="container shadow mx-auto rounded">
+  <div>
+    <%= form_with model: [@room_tag,@room],local:true do |f| %>
+      <div class="m-2">
+        <%= f.label :room_name, "部屋の名前" %>
+        <%= f.text_field :room_name, class: "w-100" %>
+      </div>
+      <div class="m-2">
+        <%= f.label :world_body, "部屋の設定" %>
+        <%= f.text_area :world_body, class: "w-100",size: "400x14" %>
+      </div>
+      <div class="m-2">
+        <%= f.label :tag_name, "タグの設定(半角スペースで区切ってください)"%>
+        <%= f.text_field :tag_name, class: "w-100" , value: @room.room_tags.map {|tag| tag.tag_name}.join(" ") %>
+      </div>
 
-    <%= f.submit "更新" %>
-  <% end %>
+      <%= f.submit "更新",class: "btn btn-outline-dark btn-sm m-1" %>
+    <% end %>
+  </div>
 </div>

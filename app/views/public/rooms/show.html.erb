@@ -4,9 +4,10 @@
   </div>
   <% if @room.room_tags.present? %>
     <div>
+      Tag Name :
       <% @room.room_tags.each do |room_tag| %>
         <!--room.rbで「through」を使ったことで記述可能に-->
-        Tag Name : <%= link_to "##{room_tag.tag_name}", rooms_path(tag_id: room_tag) %>
+         <%= link_to "##{room_tag.tag_name}", rooms_path(tag_id: room_tag) %>
       <% end %>
     </div>
   <% else %>
