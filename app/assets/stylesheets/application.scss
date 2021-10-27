@@ -153,6 +153,12 @@ li{
   @include transition(all 0.35s);
 }
 
+@media screen and (max-width: 1111px) {
+	#marker{
+	  display: none;
+	}
+}
+
 @for $i from 1 through 6{
   #main li:nth-child(#{$i}){
     &:hover ul div{

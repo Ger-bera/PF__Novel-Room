@@ -17,9 +17,7 @@
               <tr>
                 <td><%= bookmark.novel.user.name %></td>
                 <td>
-                  <%= link_to room_novel_path(bookmark.novel) do %>
-                    <%= bookmark.novel.title %>
-                  <% end %>
+                  <%= link_to bookmark.novel.title,room_novel_path(bookmark.novel.room_id,bookmark.novel.id) %>
                 </td>
               </tr>
             <% end %>
