@@ -67,23 +67,23 @@
       <table>
         <h4>作成部屋一覧</h4>
         <% if @rooms.present? %>
-        <tbody>
-          <% @rooms.each do |room| %>
+          <tbody>
+            <% @rooms.each do |room| %>
+              <tr>
+                <td>
+                  <%= link_to room.room_name, room_path(room.id) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% else %>
+          <tbody>
             <tr>
               <td>
-                <%= link_to room.room_name, room_path(room.id) %>
+                投稿した小説はありません。
               </td>
             </tr>
-          <% end %>
-        </tbody>
-        <% else %>
-        <tbody>
-          <tr>
-            <td>
-              投稿した小説はありません。
-            </td>
-          </tr>
-        </tbody>
+          </tbody>
         <% end %>
       </table>
       <%= paginate @rooms, :param_name => 'rooms_page', theme: 'twitter-bootstrap-4' %>
