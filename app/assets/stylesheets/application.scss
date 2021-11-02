@@ -50,7 +50,7 @@ main
   text-decoration: none;
  }
 
-header a,
+ header a,
  header a:hover {
    color: white;
  }
@@ -156,6 +156,10 @@ li{
 @media screen and (max-width: 1111px) {
 	#marker{
 	  display: none;
+	}
+	.nav-item{
+	  width: 100%;
+
 	}
 }
 
