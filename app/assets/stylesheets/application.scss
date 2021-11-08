@@ -159,7 +159,10 @@ li{
 	}
 	.nav-item{
 	  width: 100%;
-
+	  &:hover {
+	    background: $secondarycolor;
+	    transition: 0.35s;
+	  }
 	}
 }
 
