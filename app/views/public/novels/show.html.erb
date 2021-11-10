@@ -24,8 +24,8 @@
   <% end %>
 
   <% if @novel.user == current_user %>
-    <%= link_to "編集する", edit_room_novel_path(@novel.id) , class: "btn btn-outline-dark btn-sm m-1"%>
-    <%= link_to "削除する", room_novel_path(@novel.id), method: :delete, date: {confirm: "本当に削除しますか？"}, class: "btn btn-outline-dark btn-sm m-1" %>
+    <%= link_to "編集する", edit_room_novel_path(@novel.room_id, @novel.id) , class: "btn btn-outline-dark btn-sm m-1"%>
+    <%= link_to "削除する", room_novel_path(@novel.room_id, @novel.id), method: :delete, date: {confirm: "本当に削除しますか？"}, class: "btn btn-outline-dark btn-sm m-1" %>
   <% end %>
 
   <div id="favorites_btns_<%= @novel.id %>">
