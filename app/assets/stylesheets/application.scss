@@ -153,6 +153,10 @@ li{
   @include transition(all 0.35s);
 }
 
+.nav-item a{
+  display: block;
+}
+
 @media screen and (max-width: 1111px) {
 	#marker{
 	  display: none;
