@@ -5,10 +5,12 @@
       <%= f.label :title, "小説のタイトル" %>
       <%= f.text_field :title, class: "w-100" %>
     </div>
+
     <div class="m-2">
       <%= f.label :body, "小説の内容" %>
       <%= f.text_area :body, class: "w-100",size: "400x14" %>
     </div>
+
     <div class="m-2">
       <%= f.label :tag_name, "タグの編集(半角スペースで区切ってください)"%>
       <%= f.text_field :tag_name, class: "w-100", value: @novel.novel_tags.map {|tag| tag.tag_name}.join(" ") %>
