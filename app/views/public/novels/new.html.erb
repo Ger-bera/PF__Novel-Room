@@ -1,18 +1,22 @@
 <div id="novel_new">
   <div class="container shadow rounded mx-auto">
     <%= form_with model: [@novel_tag,@novel],url: "/rooms/#{@room.id}/novels", local: true do |f| %>
+
       <div class="m-2">
         <%= f.label :画像 %><br />
         <%= f.file_field :image , class: "btn btn-outline-dark btn-sm m-1" %>
       </div>
+
       <div class="m-2">
         <%= f.label :title, "小説のタイトル" %>
         <%= f.text_field :title, placeholder: "タイトルを入力", class: "w-100" %>
       </div>
+
       <div class="m-2">
         <%= f.label :body, "小説の内容" %>
         <%= f.text_area :body, placeholder: "小説の内容はこちら", class: "w-100", size: "400x14" %>
       </div>
+
       <div class="m-2">
         <%= f.label :tag_name, "タグの設定"%>
         <%= f.text_field :tag_name, placeholder: "タグをスペース区切りで入力", class: "w-100" %>
