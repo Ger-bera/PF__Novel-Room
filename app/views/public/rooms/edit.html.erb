@@ -1,13 +1,16 @@
 <div class="container shadow mx-auto rounded">
   <%= form_with model: [@room_tag,@room],local:true do |f| %>
+
     <div class="m-2">
       <%= f.label :room_name, "部屋の名前" %>
       <%= f.text_field :room_name, class: "w-100" %>
     </div>
+
     <div class="m-2">
       <%= f.label :world_body, "部屋の設定" %>
       <%= f.text_area :world_body, class: "w-100",size: "400x14" %>
     </div>
+
     <div class="m-2">
       <%= f.label :tag_name, "タグの設定(半角スペースで区切ってください)"%>
       <%= f.text_field :tag_name, class: "w-100" , value: @room.room_tags.map {|tag| tag.tag_name}.join(" ") %>
