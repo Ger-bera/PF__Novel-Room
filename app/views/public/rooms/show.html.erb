@@ -1,7 +1,9 @@
 <div class="container shadow mx-auto">
+  
   <div>
     Room Name : <%= @room.room_name %>
   </div>
+  
   <% if @room.room_tags.present? %>
     <div>
       Tag Name :
@@ -15,6 +17,7 @@
       タグはありません。
     </div>
   <% end %>
+  
   <div class="m-2 markdown_text">
     <%= markdown(@room.world_body).html_safe %>
   </div>
