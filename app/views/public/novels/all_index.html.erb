@@ -10,13 +10,16 @@
             <% else %>
               <%= image_tag "pexels-wendy-van-zyl-1112048.jpg" %>
             <% end %>
+            
             <div class="card-body">
               <p class="card-text"><%= link_to novel.title, room_novel_path(novel.room_id,novel.id) %></p>
             </div>
+            
           </div>
         </div>
       <% end %>
     </div>
+    
     <%= paginate @novels, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>

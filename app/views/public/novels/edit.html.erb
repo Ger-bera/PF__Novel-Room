@@ -1,6 +1,7 @@
 
 <div class="container shadow rounded mx-auto">
   <%= form_with model: [@novel_tag,@novel],url: "/rooms/#{@room.id}/novels/#{@novel.id}", local: true do |f| %>
+  
     <div class="m-2">
       <%= f.label :title, "小説のタイトル" %>
       <%= f.text_field :title, class: "w-100" %>
