@@ -1,9 +1,9 @@
 <div class="container shadow mx-auto">
-  
+
   <div>
     Room Name : <%= @room.room_name %>
   </div>
-  
+
   <% if @room.room_tags.present? %>
     <div>
       Tag Name :
@@ -17,7 +17,7 @@
       タグはありません。
     </div>
   <% end %>
-  
+
   <div class="m-2 markdown_text">
     <%= markdown(@room.world_body).html_safe %>
   </div>
@@ -31,8 +31,9 @@
       </p>
     <% else %>
       <p class="m-2">
+        いいね :
         <%= link_to room_room_favorites_path(@room), method: :post, remote: true do %>
-        いいね : ♡<%= @room.room_favorites.count %>
+          ♡<%= @room.room_favorites.count %>
         <% end %>
       </p>
     <% end %>
