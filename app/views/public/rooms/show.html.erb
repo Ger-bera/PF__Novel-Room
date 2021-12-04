@@ -9,7 +9,7 @@
       Tag Name :
       <% @room.room_tags.each do |room_tag| %>
         <!--room.rbで「through」を使ったことで記述可能に-->
-         <%= link_to "##{room_tag.tag_name}", rooms_path(tag_id: room_tag) %>
+        <%= link_to "##{room_tag.tag_name}", rooms_path(tag_id: room_tag) %>
       <% end %>
     </div>
   <% else %>
@@ -25,8 +25,9 @@
   <% if user_signed_in? %>
     <% if @room.favorited_by?(current_user) %>
       <p class="m-2">
+        いいね :
         <%= link_to room_room_favorite_path(@room), method: :delete, remote: true do %>
-        いいね : ♥<%= @room.room_favorites.count %>
+          ♥<%= @room.room_favorites.count %>
         <% end %>
       </p>
     <% else %>
