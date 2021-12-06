@@ -5,6 +5,7 @@
   </div>
 
   <% if @room.room_tags.present? %>
+
     <div>
       Tag Name :
       <% @room.room_tags.each do |room_tag| %>
@@ -12,10 +13,13 @@
         <%= link_to "##{room_tag.tag_name}", rooms_path(tag_id: room_tag) %>
       <% end %>
     </div>
+
   <% else %>
+
     <div>
       タグはありません。
     </div>
+
   <% end %>
 
   <div class="m-2 markdown_text">
