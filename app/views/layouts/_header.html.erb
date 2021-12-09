@@ -2,7 +2,7 @@
 <nav class="text-center navbar">
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <i class="fas fa-bars"></i>
   </button>
 
   <div class="collapse navbar-collapse justify-content-end flex-column" id="navbarSupportedContent">
@@ -41,7 +41,7 @@
       <div id="marker"></div>
     </ul>
   </div>
-  
+
   <%= form_with url: search_path, method: :get, class: "d-inline-flex m-2 mx-auto", local: true do %>
     <%= text_field_tag 'content' %>
     <%= select_tag 'model', options_for_select({ "作者" => "user", "部屋" => "room", "小説" => "novel", "部屋のタグ" => "room_tag", "小説のタグ" => "novel_tag" }) %>
