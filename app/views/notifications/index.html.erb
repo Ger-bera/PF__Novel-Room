@@ -1,5 +1,5 @@
- <div id="notifications">
-   <div class="container shadow mx-auto rounded">
+<div id="notifications">
+  <div class="container shadow mx-auto rounded">
     <% if @notifications.exists? %>
       <%= render "notifications", notifications: @notifications %>
       <%= paginate @notifications, theme: 'twitter-bootstrap-4' %>
